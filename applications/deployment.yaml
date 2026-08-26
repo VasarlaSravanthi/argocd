@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: deployemnts
+  name: deployements
   namespace: argocd
   # The finalizer ensures a cascading delete (removes managed K8s resources when the app is deleted)
   finalizers:
@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: 'https://github.com/VasarlaSravanthi/argocd.git'
     targetRevision: main      # Can be a branch (main), a tag (v1.0.0), or a commit SHA
-    path: deployemnts           # The subfolder containing your YAML manifests or Helm charts
+    path: deployements           # The subfolder containing your YAML manifests or Helm charts
 
   # Destination definition: Where the application will be deployed
   destination:
