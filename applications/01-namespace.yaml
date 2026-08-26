@@ -12,9 +12,9 @@ spec:
 
 # Source definition: Where your Kubernetes manifests live
   source:
-    repoURL: 'https://github.com/argoproj/argocd-example-apps.git'
-    targetRevision: HEAD      # Can be a branch (main), a tag (v1.0.0), or a commit SHA
-    path: guestbook           # The subfolder containing your YAML manifests or Helm charts
+    repoURL: 'https://github.com/VasarlaSravanthi/argocd.git'
+    targetRevision: main      # Can be a branch (main), a tag (v1.0.0), or a commit SHA
+    path: namespaces           # The subfolder containing your YAML manifests or Helm charts
 
   # Destination definition: Where the application will be deployed
   destination:
