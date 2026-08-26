@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespaces
+  namespace: argocd
+  # The finalizer ensures a cascading delete (removes managed K8s resources when the app is deleted)
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The Argo CD Project the application belongs to (default is built-in)
+  project: default
+
+# Source definition: Where your Kubernetes manifests live
+  source:
+    repoURL: 'https://github.com/argoproj/argocd-example-apps.git'
+    targetRevision: HEAD      # Can be a branch (main), a tag (v1.0.0), or a commit SHA
+    path: guestbook           # The subfolder containing your YAML manifests or Helm charts
+
+  # Destination definition: Where the application will be deployed
+  destination:
+    server: 'https://kubernetes.default.svc' # Points to the local cluster Argo CD is installed on
+    namespace: default  
