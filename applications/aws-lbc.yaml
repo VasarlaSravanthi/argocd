@@ -14,7 +14,7 @@ spec:
   source:
     chart: aws-load-balancer-controller
     repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.16.1     # Can be a branch (main), a tag (v1.0.0), or a commit SHA
+    targetRevision: 3.5.0     # Can be a branch (main), a tag (v1.0.0), or a commit SHA
     helm:
       values: |
         clusterName: roboshop
