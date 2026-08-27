@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catalogue
+  namespace: argocd
+  # The finalizer ensures a cascading delete (removes managed K8s resources when the app is deleted)
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The Argo CD Project the application belongs to (default is built-in)
+  project: default
+
+# Source definition: Where your Kubernetes manifests live
+  source:
+     repoURL: https://github.com/daws-90s/roboshop-helm.git
+     targetRevision: main # chart-version
+     path: catalogue
+     helm:
+      
+      valueFiles:
+        - values.yaml
+        #- values-dev.yaml         # The subfolder containing your YAML manifests or Helm charts
+
+  # Destination definition: Where the application will be deployed
+  destination:
+    server: 'https://kubernetes.default.svc' # Points to the local cluster Argo CD is installed on
+    namespace: roboshop-dev
+
+ # Synchronization policy configuration
+  syncPolicy:
+    automated:
+      prune: true     # Automatically deletes resources from cluster if removed from Git
+      selfHeal: true  # Automatically fixes drift if cluster configuration is changed manually
+ 
